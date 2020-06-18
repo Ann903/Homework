@@ -4,6 +4,7 @@ const router = require('koa-router')();
 const koaBody = require('koa-body');
 const serve = require('koa-static');
 const fs = require('fs');
+const path = require('path');
 // router.post('/users', koaBody(),
 //   (ctx) => {
 //     console.log(ctx.request.body);
@@ -11,28 +12,40 @@ const fs = require('fs');
 //     ctx.body = JSON.stringify(ctx.request.body);
 //   }
 // );
+// console.log(__dirname);
+// console.log(path.resolve(__dirname, './static','upload'));
 
-// app.use('/upload',koaBody({
-//     multipart: true,
-//     formidable: {
-//         maxFileSize: 200*1024*1024	// 设置上传文件大小最大限制，默认2M
-//     }
-// }));
+router.post('/users1', koaBody({
+  multipart: true,
+  formidable: {
+    maxFileSize: 200 * 1024 * 1024,	// 设置上传文件大小最大限制，默认2M
+    uploadDir: path.resolve(__dirname, './static', 'upload')
+  }
+}), async (ctx) => {
+  ctx.body = '上传成功 直接使用koabody';
+});
 
 
 // postData with koabody
-// router.post('/users', async (ctx) => {
-//     const file = ctx.request.body.files.file;	// 获取上传文件
-// 	const reader = fs.createReadStream(file.path);	// 创建可读流
-// 	const ext = file.name.split('.').pop();		// 获取上传文件扩展名
-// 	const upStream = fs.createWriteStream(`upload/${Math.random().toString()}.${ext}`);		// 创建可写流
-// 	reader.pipe(upStream);	// 可读流通过管道写入可写流
-// 	return ctx.body = '上传成功';
-// })
+router.post('/users', koaBody({
+  multipart:true,
+  formidable:{
+    maxFieldsSize:10*1024*1024,
+    multipart:true}
+  }), async (ctx) => {
+  const file = ctx.request.files.file;	// 获取上传文件
+  // console.log(ctx.request.body)
+  // console.log(file);
+	const reader = fs.createReadStream(file.path);	// 创建可读流
+	const ext = file.name.split('.').pop();		// 获取上传文件扩展名
+	const upStream = fs.createWriteStream(`static/upload/${Math.random().toString()}.${ext}`);		// 创建可写流
+	reader.pipe(upStream);	// 可读流通过管道写入可写流
+	return ctx.body = '上传成功，直接使用koabody';
+})
 
 
 // postData without koabody
-router.post('/users', async (ctx) => {
+router.post('/users0', async (ctx) => {
   console.log(ctx.request.body);
   // 解析上下文里node原生请求的POST参数
   let parsedData = await new Promise((resolve, reject) => {
