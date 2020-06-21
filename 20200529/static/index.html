@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form name='fileinfo'>
+        <input type="file" name="file" value="选择文件"/>
+        <button type="button" onclick="onPost()">post</button>
+        <!-- <input type="button" onclick="onPost()">post</input> -->
+    </form>
+
+    <script>
+        function onPost() {
+            var form = document.forms.namedItem("fileinfo");
+            oData = new FormData(form);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("post", "http://localhost:8080/upload");
+            xhr.onload = (e) => {
+              console.log(e.target.response);
+              alert(e.target.response);
+            };
+            
+            // xhr.setRequestHeader("content-type", "application/json");
+            xhr.send(oData);
+        }
+    </script>
+</body>
+</html>
