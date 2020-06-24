@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <button onclick="onGet()">get</button>
+    <button onclick="onPost()">post</button> 
+</body>
+<script>
+    function onGet() {
+        const data = {
+          name: "xiaohong",
+          age: 18,
+        };
+        axios
+          .get("/getData", {
+            params: {
+              ...data,
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+    }
+
+    function onPost() {
+        axios.post("/postData", { name: "xiaohong", age: 18 }).then((res) => {
+          console.log(res.data);
+        });
+    }
+</script>
+</html>
