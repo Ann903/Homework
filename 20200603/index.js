@@ -21,12 +21,22 @@ app.use(
 const router = new Router();
 
 router.get("/getData", (ctx) => {
-    ctx.body = 'get'
+    ctx.body = {
+      data: {
+      ...ctx.query,
+    }
+  }
 })
 
-router.post("postData", (ctx) => {
-    ctx.body = 'post'
+router.post("/postData", (ctx) => {
+    ctx.body =  {
+      data: {
+        ...ctx.request.body,
+      }
+    }
 })
+
+app.use(router.routes());
 
 app.listen(8080, () => {
     console.log("open server localhost:8080");

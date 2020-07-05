@@ -12,24 +12,23 @@
     <button onclick="onPost()">post</button> 
 </body>
 <script>
+  
     function onGet() {
         const data = {
           name: "xiaohong",
           age: 18,
         };
-        axios
-          .get("/getData", {
+        axios.get("/getData", {
             params: {
               ...data,
             },
-          })
-          .then((res) => {
+          }).then((res) => {
             console.log(res.data);
           });
     }
 
     function onPost() {
-        axios.post("/postData", { name: "xiaohong", age: 18 }).then((res) => {
+        axios.post("/postData",{ name: "xixi", age: 12 }).then((res) => {
           console.log(res.data);
         });
     }
