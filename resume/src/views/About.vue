@@ -2,8 +2,8 @@
   <div class="homePage">
     <div class="username">安宇航</div>
     <!-- <el-divider></el-divider> -->
-    <el-tabs  class="tabLeft" :tab-position="tabPosition" style="">
-      <el-tab-pane label="个人概况">
+    <div  class="tabLeft" style="">
+      <div label="个人概况">
         <div class="profile">
           <span class="profileName">学校：</span>
           <span>××大学</span>
@@ -28,18 +28,18 @@
           <span class="profileName">gitHub：</span>
           <span>******@foxmail.com</span>
         </div>
-        <el-image class="userAvatar" style="width: 148px; height: 207px" :src="url" :preview-src-list="srcList"></el-image>
-      </el-tab-pane>
-      <el-tab-pane label="教育背景">
+        <div class="userAvatar" style="width: 148px; height: 207px" :src="url" :preview-src-list="srcList"></div>
+      </div>
+      <div label="教育背景">
         2016.9-2020.7： 桂林电子科技大学， 电子信息工程，本科
-      </el-tab-pane>
-      <el-tab-pane label="专业技能">
+      </div>
+      <div label="专业技能">
         <div  class="profileName">IT技能：</div>
         <div>你的技能</div>
         <div class="profileName">英语技能：</div>
         <div>CET-6</div>
-      </el-tab-pane>
-      <el-tab-pane label="项目经历">
+      </div>
+      <div label="项目经历">
         <div>
           <span>随机句项目 | </span>
           <span>2020 年 5 月 – 2020 年 6 月</span>
@@ -77,12 +77,12 @@
 指令操作。
         </div>
 
-      </el-tab-pane>
-      <el-tab-pane label="个人评价">
+      </div>
+      <div label="个人评价">
         <div>性格乐观开朗，积极向上，待人热情， 具有较强的社交能力，做事认真谨慎
 ·学习有着极高的热情， 不怕苦，不畏难， 做事认真踏实， 自学能力强， 有良好的团队协作意识和抗压能力</div>
-      </el-tab-pane>
-    </el-tabs>
+      </div>
+    </div>
   </div>
 </template>
 
